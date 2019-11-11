@@ -105,6 +105,19 @@ namespace ZkhiphavaWeb.Controllers
             }
         }
 
+        [Route("api/EventsOnly")]
+        [HttpGet]
+        public List<Event> getEvents()
+        {
+            return db.Events.ToList();
+        }
+        [Route("api/ImagesOnly")]
+        [HttpGet]
+        public List<Image> getImages()
+        {
+            return db.Images.ToList();
+        }
+
         public string getNextDay(string curDay)
         {
             if (curDay == "Sunday")
@@ -187,7 +200,7 @@ namespace ZkhiphavaWeb.Controllers
             int outPut;
             var rnd = new Random();
             try { 
-                var events = db.Events.Take(3).ToList();
+                var events = db.Events.ToList();
                 foreach (var evnt in events)
                 {
                     if (int.TryParse(lat[1].ToString(), out outPut) && int.TryParse(lon[0].ToString(), out outPut))
